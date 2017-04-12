@@ -26,6 +26,7 @@
   "sinap": {
     "kind": ["Formal Languages", "NFA"],
     "plugin-file": "nfa.ts",
-    "description": "This interpreter provides a simple non-deterministic finite automata (NFA) implementation."
+    "description": "This interpreter provides a simple non-deterministic finite automata (NFA) implementation.",
+    "loader": "typescript"
   }
 }
