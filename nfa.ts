@@ -5,6 +5,26 @@ export class NFANode {
     isAcceptState: boolean;
     children: NFAEdge[];
     label: string;
+
+    private get image(): string {
+        if (this.isStartState && this.isAcceptState) {
+            return "start_accept_state.svg";
+        }
+        if (this.isAcceptState) {
+            return "accept_state.svg";
+        }
+        if (this.isStartState) {
+            return "start_state.svg";
+        }
+        return "";
+    }
+
+    private get shape(): string {
+        if (this.isStartState || this.isAcceptState) {
+            return "image";
+        }
+        return "circle";
+    }
 }
 
 export class NFAEdge {
