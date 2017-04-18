@@ -8,9 +8,16 @@ export class NFANode {
 }
 
 export class NFAEdge {
-    /** Symbol */
-    label: string;
+    symbol: string;
     destination: NFANode;
+
+    private get label() {
+        if (this.symbol.length > 0) {
+            return this.symbol;
+        } else {
+            return "λ";
+        }
+    }
 }
 
 export class NFAGraph {
@@ -59,10 +66,10 @@ export function start(input: NFAGraph, data: string): State | boolean {
         if (node.children) {
             let transitions = new Set<string>();
             for (const edge of node.children) {
-                if (edge.label.length > 1) {
-                    throw new Error("Edge " + edge.label + " must be one symbol");
+                if (edge.symbol.length > 1) {
+                    throw new Error(`Edge ${edge.symbol} must be one symbol`);
                 }
-                transitions.add(edge.label);
+                transitions.add(edge.symbol);
             }
         }
     }
@@ -82,7 +89,7 @@ export function step(current: State): State | boolean {
         return current.active.reduce((a, b) => b.isAcceptState === true || a, false);
     }
     const destinations = current.active.reduce((dests, a) => dests.concat(a.children), [] as NFAEdge[])
-        .filter(edge => edge.label === current.inputLeft[0])
+        .filter(edge => edge.symbol === "" || edge.symbol === current.inputLeft[0])
         .map(edge => edge.destination);
 
     if (destinations.length === 0) {
