@@ -19,6 +19,13 @@ export class NFANode {
         return "";
     }
 
+    private get origin(): {x: number, y: number} {
+        return {
+            x: this.isStartState ? 10 : 0,
+            y: 0
+        }
+    }
+
     private get shape(): string {
         if (this.isStartState || this.isAcceptState) {
             return "image";
