@@ -23,7 +23,7 @@ export class NFANode {
         return {
             x: this.isStartState ? 10 : 0,
             y: 0
-        }
+        };
     }
 
     private get shape(): string {
