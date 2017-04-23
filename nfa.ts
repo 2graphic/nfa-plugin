@@ -27,9 +27,6 @@ export class NFANode {
     }
 
     private get shape(): string {
-        if (this.isStartState || this.isAcceptState) {
-            return "image";
-        }
         return "circle";
     }
 }
