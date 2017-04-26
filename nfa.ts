@@ -101,7 +101,6 @@ export function start(input: NFAGraph, data: string): State | boolean {
     for (const state of starts) {
         visitNode(state, initialActive);
     }
-    console.log("initialActive", initialActive);
 
     return new State([...initialActive], data);
 }
